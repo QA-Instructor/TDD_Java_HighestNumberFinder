@@ -17,12 +17,21 @@ public class TopicManager {
     public ArrayList<TopicTopScore> findTopicHighScores(ArrayList<TopicScores> array) {
 
         ArrayList<TopicTopScore> topScores = new ArrayList<>();
-        if(array.size() == 1)
+//        if(array.size() == 1)
+//        {
+//            TopicScores ts = array.get(0);
+//            int topScore = highestNumberFinder.findHighestNumber(ts.getScores());
+//            topScores.add(new TopicTopScore(ts.getTopicName(), topScore));
+//        }
+//        return topScores;
+
+        for (TopicScores ts : array)
         {
-            TopicScores ts = array.get(0);
             int topScore = highestNumberFinder.findHighestNumber(ts.getScores());
+
             topScores.add(new TopicTopScore(ts.getTopicName(), topScore));
         }
         return topScores;
+
     }
 }
