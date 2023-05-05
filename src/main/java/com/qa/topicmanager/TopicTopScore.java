@@ -19,4 +19,14 @@ public class TopicTopScore {
         this.topicName = topicName;
         this.topScore = topScore;
     }
+
+//    required for value comparison between mocked list and the expected list
+
+    public boolean equals(Object anObject)
+    {
+        TopicTopScore rh = (TopicTopScore)anObject;
+
+        return (topicName.equalsIgnoreCase(rh.topicName) && (topScore==rh.topScore));
+    }
+
 }

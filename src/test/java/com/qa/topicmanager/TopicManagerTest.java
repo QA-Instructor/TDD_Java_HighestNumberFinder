@@ -1,11 +1,14 @@
 package com.qa.topicmanager;
 
 import com.qa.findhighestnumber.HighestNumberFinder;
+import com.qa.findhighestnumber.IHighestNumberFinder;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class TopicManagerTest {
 
@@ -122,4 +125,40 @@ class TopicManagerTest {
         assertEquals(expectedResult.get(2).getTopScore(), result.get(2).getTopScore() );
 
     }
+
+    @Test
+    public void find_highest_score_with_array_of_many_return_array_of_many_using_mocks()
+    {
+        //[{“Physics”, { 56, 67, 45, 89} }, {“Art”, { 87, 66, 78} },
+//        {“Comp Sci”, { 45, 88, 97, 56} }]
+        // Arrange
+        int[] physics_scores = { 56, 67, 45, 89 };
+        String physics = "Physics";
+        int[] art_scores = { 87, 66, 78 };
+        String art = "Art";
+        int[] compSci_scores = { 45, 88, 97, 56 };
+        String compSci = "Comp Sci";
+        ArrayList<TopicScores> topicScores = new ArrayList<>();
+        topicScores.add(new TopicScores(physics, physics_scores));
+        topicScores.add(new TopicScores(art, art_scores));
+        topicScores.add(new TopicScores(compSci, compSci_scores));
+
+        // Use a mock version of HighestNumberFinder
+        IHighestNumberFinder hnf = mock( com.qa.findhighestnumber.HighestNumberFinder.class );
+        // Setup the expectations
+        when(hnf.findHighestNumber(physics_scores)).thenReturn(89);
+        when(hnf.findHighestNumber(art_scores)).thenReturn(87);
+        when(hnf.findHighestNumber(compSci_scores)).thenReturn(97);
+
+        TopicManager cut = new TopicManager(hnf);
+        ArrayList<TopicTopScore> expectedResult = new ArrayList<>();
+        expectedResult.add( new TopicTopScore(physics, 89));
+        expectedResult.add( new TopicTopScore(art, 87));
+        expectedResult.add( new TopicTopScore(compSci, 97));
+        // Act
+        ArrayList<TopicTopScore> result = cut.findTopicHighScores(topicScores);
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
 }
