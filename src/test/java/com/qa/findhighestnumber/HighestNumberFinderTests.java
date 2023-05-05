@@ -13,10 +13,7 @@ public class HighestNumberFinderTests {
         public void find_highest_in_array_of_one_expect_single_item()
         {
             // Arrange
-            int array[] =
-                    {
-                            10
-                    };
+            int array[] = {10};
             HighestNumberFinder cut = new HighestNumberFinder();
             int expectedResult = 10;
 
@@ -101,10 +98,7 @@ public class HighestNumberFinderTests {
         HighestNumberFinder cut = new HighestNumberFinder();
 
         assertThrows(Exception.class, () -> cut.findHighestNumber(values));
-//        // Act
-//        int result = cut.findHighestNumber(values);
-//        //Assert
-//        assertEquals(expectedResult, result);
+
     }
 }
 
