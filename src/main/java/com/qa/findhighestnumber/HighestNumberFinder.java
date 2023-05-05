@@ -1,6 +1,6 @@
 package com.qa.findhighestnumber;
 
-public class HighestNumberFinder {
+public class HighestNumberFinder implements IHighestNumberFinder {
     public int findHighestNumber(int[] array) {
 //        return array[0];
         int highestSoFar = array[0];

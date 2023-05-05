@@ -1,15 +1,16 @@
 package com.qa.topicmanager;
 
 import com.qa.findhighestnumber.HighestNumberFinder;
+import com.qa.findhighestnumber.IHighestNumberFinder;
 
 import java.util.ArrayList;
 
 public class TopicManager {
 
 //    private final HighestNumberFinder highestNumberFinder = new HighestNumberFinder();
-    private HighestNumberFinder highestNumberFinder;
+    private IHighestNumberFinder highestNumberFinder;
 
-    public TopicManager(HighestNumberFinder hnf) {
+    public TopicManager(IHighestNumberFinder hnf) {
         this.highestNumberFinder = hnf;
     }
 
